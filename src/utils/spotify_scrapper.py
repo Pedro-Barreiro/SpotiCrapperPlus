@@ -49,17 +49,17 @@ def scrape_album(album_id):
     return album
 
 # Example usage
-playlist_id = '37i9dQZF1DX0rV7skaITBo'
-playlist = scrape_playlist(playlist_id)
-print(f"---\nPlaylist: {playlist['playlist_name']}")
-print("Tracks:")
-for track in playlist['tracks']:
-    print(f"- {track['name']} by {track['artist']}")
+# playlist_id = '37i9dQZF1DX0rV7skaITBo'
+# playlist = scrape_playlist(playlist_id)
+# print(f"---\nPlaylist: {playlist['playlist_name']}")
+# print("Tracks:")
+# for track in playlist['tracks']:
+#     print(f"- {track['name']} by {track['artist']}")
 
-album_id = '4chPUBJXFpxBagtuD5l0rq'
-album = scrape_album(album_id)
-print(f"---\nAlbum: {album['album_name']}")
-print(f"Artist: {album['artist_name']}")
-print("Tracks:")
-for track in album['tracks']:
-    print(f"- {track}")
+# album_id = '4chPUBJXFpxBagtuD5l0rq'
+# album = scrape_album(album_id)
+# print(f"---\nAlbum: {album['album_name']}")
+# print(f"Artist: {album['artist_name']}")
+# print("Tracks:")
+# for track in album['tracks']:
+#     print(f"- {track}")
