@@ -3,7 +3,6 @@ from src.utils import spotify_scrapper, youtube
 
 load_dotenv()
 
-
 def main():
     playlist_id = '37i9dQZF1DX0rV7skaITBo'
     playlist = spotify_scrapper.scrape_playlist(playlist_id)
