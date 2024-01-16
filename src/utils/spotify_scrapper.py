@@ -1,9 +1,6 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
 
 # Set up your Spotify API credentials
 client_id = os.getenv('SPOTIFY_CLIENT_ID')
@@ -15,7 +12,12 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # Scrape a playlist
 def scrape_playlist(playlist_id):
-    results = sp.playlist(playlist_id)
+    try:
+        results = sp.playlist(playlist_id)
+    except spotipy.client.SpotifyException as e:
+        print(f"Failed to scrape playlist on Spotify: {e}")
+        raise
+
     playlistTracks = results['tracks']['items']
     tracks = []
 
@@ -37,7 +39,12 @@ def scrape_playlist(playlist_id):
 
 # Scrape an album
 def scrape_album(album_id):
-    results = sp.album(album_id)
+    try:
+        results = sp.album(album_id)
+    except spotipy.client.SpotifyException as e:
+        print(f"Failed to scrape album on Spotify: {e}")
+        raise
+    
     tracks = results['tracks']['items']
 
     album = {

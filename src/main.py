@@ -1,13 +1,18 @@
-from utils.spotify_scrapper import scrape_playlist
-from utils.youtube import createYTPlaylist
+from dotenv import load_dotenv
+from src.utils import spotify_scrapper, youtube
+
+load_dotenv()
 
 
 def main():
     playlist_id = '37i9dQZF1DX0rV7skaITBo'
-    playlist = scrape_playlist(playlist_id)
+    playlist = spotify_scrapper.scrape_playlist(playlist_id)
     print("scraped playlist from Spotify")
 
-    createYTPlaylist(playlist['playlist_name'])
-    print("created playlist on YouTube")
+    try:
+        youtube.createYTPlaylist(playlist['playlist_name'])
+        print("created playlist on YouTube")
+    except Exception as e:
+        print(f"Failed to create playlist on YouTube: {e}")
 
 main()
