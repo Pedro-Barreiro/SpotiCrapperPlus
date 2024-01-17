@@ -5,7 +5,9 @@ import utils.youtube.index as youtube
 load_dotenv()
 
 def main():
-    spotifyPlaylistId = '0dDRkPj44cUJHg0mq4etcK'
+    
+    # spotifyPlaylistId = '0dDRkPj44cUJHg0mq4etcK'
+    spotifyPlaylistId = input("Enter Spotify playlist ID: ")
 
     # Scrape playlist from Spotify
     try:
@@ -36,6 +38,18 @@ def main():
             print("Playlist already exists on YouTube")
             break
 
+    # Search for each track on YouTube
+    youtubeVideoIds = []
+    for track in playlist['tracks']:
+        try:
+            youtubeVideo = youtube.searchYoutubeVideo(youtubeServiceApi, track['name'], track['artist'])
+            youtubeVideoId = youtubeVideo['items'][0]['id']['videoId']
+            youtubeVideoIds.append(youtubeVideoId)
+            print(f"Found video on YouTube: {youtubeVideoId}")
+        except Exception as e:
+            print(f"Failed to search video on YouTube: {e}")
+            continue
+    
     # If playlist does not exist on YouTube, create it
     if ytPlaylistId is None:
         try:
@@ -44,18 +58,22 @@ def main():
             print("Created playlist on YouTube")
         except Exception as e:
             print(f"Failed to create playlist on YouTube: {e}")
-
-    # Search for each track on YouTube
-    for track in playlist['tracks']:
+    else:
+        # If playlist exists on YouTube, list all videos
+        youtubePlaylistVideosIds = []
         try:
-            youtubeVideo = youtube.searchYoutubeVideo(youtubeServiceApi, track['name'], track['artist'])
-            youtubeVideoId = youtubeVideo['items'][0]['id']['videoId']
-            print(f"Found video on YouTube: {youtubeVideoId}")
+            youtubePlaylistVideos = youtube.listVideosFromYoutubePlaylist(youtubeServiceApi, ytPlaylistId)
+            for youtubePlaylistVideo in youtubePlaylistVideos['items']:
+                youtubePlaylistVideosIds.append(youtubePlaylistVideo['contentDetails']['videoId'])
         except Exception as e:
-            print(f"Failed to search video on YouTube: {e}")
-            continue
+            print(f"Failed to list videos from YouTube playlist: {e}")
+            return
 
-        # Add video to playlist
+    # Check if video already exists on YouTube playlist
+    youtubeVideoIds = list(set(youtubeVideoIds) - set(youtubePlaylistVideosIds))
+    
+    # Add video to playlist
+    for youtubeVideoId in youtubeVideoIds:
         try:
             youtube.addVideoToYoutubePlaylist(youtubeServiceApi, ytPlaylistId, youtubeVideoId)
             print("Added video to playlist on YouTube")
