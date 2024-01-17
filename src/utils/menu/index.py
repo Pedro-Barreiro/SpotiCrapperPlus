@@ -1,4 +1,4 @@
-from menus.main import mainMenu
-from handlers.mainMenuHandler import mainMenuHandler
+from .menus.mainMenu import mainMenu
+from .menus.spotifyPostActionMenu import spotifyPostActionMenu
 
-__all__ = ['mainMenu','mainMenuHandler']
+__all__ = ['mainMenu', 'spotifyPostActionMenu']
