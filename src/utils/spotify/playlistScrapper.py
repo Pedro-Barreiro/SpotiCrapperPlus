@@ -21,16 +21,9 @@ def scrape_playlist(spotify, playlist_id):
         tracks.append(track_info)
 
     playlist = {
+        'type': 'playlist',
         'playlist_name': results['name'],
         'tracks': tracks
     }
 
     return playlist
-
-# Example usage
-# playlist_id = '37i9dQZF1DX0rV7skaITBo'
-# playlist = scrape_playlist(playlist_id)
-# print(f"---\nPlaylist: {playlist['playlist_name']}")
-# print("Tracks:")
-# for track in playlist['tracks']:
-#     print(f"- {track['name']} by {track['artist']}")

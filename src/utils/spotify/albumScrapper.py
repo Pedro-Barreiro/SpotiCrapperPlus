@@ -11,18 +11,10 @@ def scrape_album(spotify, album_id):
     tracks = results['tracks']['items']
 
     album = {
+        'type': 'album',
         'album_name': results['name'],
         'artist_name': results['artists'][0]['name'],
         'tracks': [track['name'] for track in tracks]
     }
 
     return album
-
-# Example usage
-# album_id = '4chPUBJXFpxBagtuD5l0rq'
-# album = scrape_album(album_id)
-# print(f"---\nAlbum: {album['album_name']}")
-# print(f"Artist: {album['artist_name']}")
-# print("Tracks:")
-# for track in album['tracks']:
-#     print(f"- {track}")
