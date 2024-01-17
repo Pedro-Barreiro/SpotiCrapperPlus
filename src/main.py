@@ -1,26 +1,17 @@
 from dotenv import load_dotenv
+import utils.menu.index as menu
 import utils.spotify.index as spotify
 import utils.youtube.index as youtube
 
 load_dotenv()
 
 def main():
-    
-    # spotifyPlaylistId = '0dDRkPj44cUJHg0mq4etcK'
-    spotifyPlaylistId = input("Enter Spotify playlist ID: ")
 
-    # Scrape playlist from Spotify
-    try:
-        spotifyAuth = spotify.getSpotifyAuth()
-        playlist = spotify.scrape_playlist(spotifyAuth, spotifyPlaylistId)
-        print("scraped playlist from Spotify")
-    except Exception as e:
-        print(f"Failed to scrape playlist from Spotify: {e}")
-        return
-    
-    if not playlist:
-        print("No playlist found on Spotify")
-        return
+    choice = menu.menu()
+
+    menu.mainMenuHandler(choice)
+
+   
 
     # Get playlists from YouTube
     try:
