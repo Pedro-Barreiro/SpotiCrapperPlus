@@ -1,13 +1,10 @@
 import googleapiclient.discovery
 
+
 # Search YouTube video
 def searchYoutubeVideo(youtubeServiceApi, trackName, artistName):
-
     request = youtubeServiceApi.search().list(
-        part="snippet",
-        maxResults=1,
-        q=f"{trackName} - {artistName}",
-        type="video"
+        part="snippet", maxResults=1, q=f"{trackName} - {artistName}", type="video"
     )
     try:
         response = request.execute()

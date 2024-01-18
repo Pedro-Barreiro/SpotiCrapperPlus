@@ -1,5 +1,6 @@
 import spotipy
 
+
 # Scrape a playlist
 def scrape_playlist(spotify, playlist_id):
     try:
@@ -8,22 +9,15 @@ def scrape_playlist(spotify, playlist_id):
         print(f"Failed to scrape playlist on Spotify: {e}")
         raise
 
-    playlistTracks = results['tracks']['items']
+    playlistTracks = results["tracks"]["items"]
     tracks = []
 
     for track in playlistTracks:
-        track_name = track['track']['name']
-        artist_name = track['track']['artists'][0]['name']
-        track_info = {
-            'name': track_name,
-            'artist': artist_name
-        }
+        track_name = track["track"]["name"]
+        artist_name = track["track"]["artists"][0]["name"]
+        track_info = {"name": track_name, "artist": artist_name}
         tracks.append(track_info)
 
-    playlist = {
-        'type': 'playlist',
-        'playlist_name': results['name'],
-        'tracks': tracks
-    }
+    playlist = {"type": "playlist", "playlist_name": results["name"], "tracks": tracks}
 
     return playlist

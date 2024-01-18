@@ -2,7 +2,11 @@ import os
 import google_auth_oauthlib
 import googleapiclient.discovery
 
-scopes = ['https://www.googleapis.com/auth/youtube.force-ssl', "https://www.googleapis.com/auth/youtube.readonly"]
+scopes = [
+    "https://www.googleapis.com/auth/youtube.force-ssl",
+    "https://www.googleapis.com/auth/youtube.readonly",
+]
+
 
 # Get YouTube OAuth
 def getYoutubeOauth():
@@ -12,13 +16,15 @@ def getYoutubeOauth():
 
     api_service_name = "youtube"
     api_version = "v3"
-    client_secrets_file = os.getenv('YT_CLIENT_SECRETS_FILE')
+    client_secrets_file = os.getenv("YT_CLIENT_SECRETS_FILE")
 
     # Get credentials and create an API client
     flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
-        client_secrets_file, scopes)
+        client_secrets_file, scopes
+    )
     credentials = flow.run_local_server(port=0)
     youtubeServiceApi = googleapiclient.discovery.build(
-        api_service_name, api_version, credentials=credentials)
+        api_service_name, api_version, credentials=credentials
+    )
 
     return youtubeServiceApi

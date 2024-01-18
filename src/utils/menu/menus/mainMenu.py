@@ -1,5 +1,6 @@
 import utils.menu.functions.mainMenuFunctions as mainMenuFunctions
-import main
+from main import main
+
 
 def mainMenu():
     print("Welcome to SpotiScrapper+!")
@@ -11,7 +12,7 @@ def mainMenu():
 
     if choice == "1":
         mainMenuFunctions.choice1()
-            
+
     elif choice == "2":
         mainMenuFunctions.choice2()
 
@@ -21,4 +22,3 @@ def mainMenu():
     else:
         print("Invalid choice!")
         main()
-

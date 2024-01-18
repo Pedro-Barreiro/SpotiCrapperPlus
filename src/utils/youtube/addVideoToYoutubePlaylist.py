@@ -1,19 +1,16 @@
 import googleapiclient.discovery
 
-def addVideoToYoutubePlaylist(youtubeServiceApi, playlistId, videoId):
 
+def addVideoToYoutubePlaylist(youtubeServiceApi, playlistId, videoId):
     request = youtubeServiceApi.playlistItems().insert(
         part="snippet",
         body={
-          "snippet": {
-            "playlistId": playlistId,
-            "position": 0,
-            "resourceId": {
-              "kind": "youtube#video",
-              "videoId": videoId
+            "snippet": {
+                "playlistId": playlistId,
+                "position": 0,
+                "resourceId": {"kind": "youtube#video", "videoId": videoId},
             }
-          }
-        }
+        },
     )
     try:
         response = request.execute()

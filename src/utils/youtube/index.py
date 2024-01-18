@@ -5,4 +5,11 @@ from .searchYoutubeVideo import searchYoutubeVideo
 from .addVideoToYoutubePlaylist import addVideoToYoutubePlaylist
 from .listVideosFromYoutubePlaylist import listVideosFromYoutubePlaylist
 
-__all__ = ['getYoutubeOauth','listYoutubePlaylists','createYoutubePlaylist','searchYoutubeVideo', 'addVideoToYoutubePlaylist', 'listVideosFromYoutubePlaylist']
+__all__ = [
+    "getYoutubeOauth",
+    "listYoutubePlaylists",
+    "createYoutubePlaylist",
+    "searchYoutubeVideo",
+    "addVideoToYoutubePlaylist",
+    "listVideosFromYoutubePlaylist",
+]

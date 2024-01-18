@@ -1,5 +1,6 @@
 import utils.menu.functions.spotifyPostActionMenuFunctions as spotifyPostActionMenuFunctions
-import main
+from main import main
+
 
 def spotifyPostActionMenu(scrapedItem):
     print("Choose an action to do with the scrapped album/playlist:")
@@ -11,15 +12,15 @@ def spotifyPostActionMenu(scrapedItem):
     choice = input("Enter your choice: ")
 
     if choice == "1":
-        if scrapedItem['type'] == "playlist":
+        if scrapedItem["type"] == "playlist":
             spotifyPostActionMenuFunctions.choice1Playlist(scrapedItem)
-        elif scrapedItem['type'] == "album":
+        elif scrapedItem["type"] == "album":
             spotifyPostActionMenuFunctions.choice1Album(scrapedItem)
-            
+
     elif choice == "2":
-        if scrapedItem['type'] == "playlist":
+        if scrapedItem["type"] == "playlist":
             spotifyPostActionMenuFunctions.choice2Playlist(scrapedItem)
-        elif scrapedItem['type'] == "album":
+        elif scrapedItem["type"] == "album":
             spotifyPostActionMenuFunctions.choice2Album(scrapedItem)
     elif choice == "3":
         main()
